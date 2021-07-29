@@ -47,6 +47,8 @@ namespace GrpcGreeterClient {
 
     static readonly grpc::Marshaller<global::GrpcGreeterClient.HelloRequest> __Marshaller_greet_HelloRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcGreeterClient.HelloRequest.Parser));
     static readonly grpc::Marshaller<global::GrpcGreeterClient.HelloReply> __Marshaller_greet_HelloReply = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcGreeterClient.HelloReply.Parser));
+    static readonly grpc::Marshaller<global::GrpcGreeterClient.AddRequest> __Marshaller_greet_AddRequest = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcGreeterClient.AddRequest.Parser));
+    static readonly grpc::Marshaller<global::GrpcGreeterClient.AddResponse> __Marshaller_greet_AddResponse = grpc::Marshallers.Create(__Helper_SerializeMessage, context => __Helper_DeserializeMessage(context, global::GrpcGreeterClient.AddResponse.Parser));
 
     static readonly grpc::Method<global::GrpcGreeterClient.HelloRequest, global::GrpcGreeterClient.HelloReply> __Method_SayHello = new grpc::Method<global::GrpcGreeterClient.HelloRequest, global::GrpcGreeterClient.HelloReply>(
         grpc::MethodType.Unary,
@@ -54,6 +56,13 @@ namespace GrpcGreeterClient {
         "SayHello",
         __Marshaller_greet_HelloRequest,
         __Marshaller_greet_HelloReply);
+
+    static readonly grpc::Method<global::GrpcGreeterClient.AddRequest, global::GrpcGreeterClient.AddResponse> __Method_AddNumbers = new grpc::Method<global::GrpcGreeterClient.AddRequest, global::GrpcGreeterClient.AddResponse>(
+        grpc::MethodType.Unary,
+        __ServiceName,
+        "AddNumbers",
+        __Marshaller_greet_AddRequest,
+        __Marshaller_greet_AddResponse);
 
     /// <summary>Service descriptor</summary>
     public static global::Google.Protobuf.Reflection.ServiceDescriptor Descriptor
@@ -127,6 +136,22 @@ namespace GrpcGreeterClient {
       public virtual grpc::AsyncUnaryCall<global::GrpcGreeterClient.HelloReply> SayHelloAsync(global::GrpcGreeterClient.HelloRequest request, grpc::CallOptions options)
       {
         return CallInvoker.AsyncUnaryCall(__Method_SayHello, null, options, request);
+      }
+      public virtual global::GrpcGreeterClient.AddResponse AddNumbers(global::GrpcGreeterClient.AddRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddNumbers(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual global::GrpcGreeterClient.AddResponse AddNumbers(global::GrpcGreeterClient.AddRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.BlockingUnaryCall(__Method_AddNumbers, null, options, request);
+      }
+      public virtual grpc::AsyncUnaryCall<global::GrpcGreeterClient.AddResponse> AddNumbersAsync(global::GrpcGreeterClient.AddRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return AddNumbersAsync(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncUnaryCall<global::GrpcGreeterClient.AddResponse> AddNumbersAsync(global::GrpcGreeterClient.AddRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncUnaryCall(__Method_AddNumbers, null, options, request);
       }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override GreeterClient NewInstance(ClientBaseConfiguration configuration)
